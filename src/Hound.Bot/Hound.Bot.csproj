@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Hound.Bot-188F3F56-5447-4344-96A3-2DE8706D6389</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DSharpPlus" Version="4.2.0-nightly-01044" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.2.0-nightly-01044" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="4.2.0-nightly-01044" />
+    <PackageReference Include="DSharpPlus.SlashCommands" Version="4.2.0-nightly-01044" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hound.Infrastructure\Hound.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+    <Folder Include="Modules\" />
+  </ItemGroup>
+</Project>

@@ -2,9 +2,9 @@
 
 public class MainModule : BaseCommandModule
 {
-	[Command("greet")]
-	public async Task GreetCommand(CommandContext ctx)
+	[Command("пинг")]
+	public async Task PingCommand(CommandContext context)
 	{
-		await ctx.RespondAsync("Greetings! Thank you for executing me!");
+		await context.RespondAsync($"Понг! Задержка равна: {context.Client.Ping} мс.");
 	}
 }

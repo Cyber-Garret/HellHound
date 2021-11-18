@@ -3,6 +3,7 @@
     "Hound.Bot": {
       "commandName": "Project",
       "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5085",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

@@ -1,18 +1,18 @@
-﻿<Window x:Class="Hound.Editor.MainWindow"
+﻿<Window x:Class="Hound.Client.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Hound.Editor"
+        xmlns:local="clr-namespace:Hound.Client"
         mc:Ignorable="d"
         Title="Hell Hound Client" Height="450" Width="800">
     <DockPanel LastChildFill="False">
         <DockPanel DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch" LastChildFill="True">
             <Label DockPanel.Dock="Left" Content="Hub Address" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Button DockPanel.Dock="Right" x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Right" Click="connectButton_Click"/>
+            <Button DockPanel.Dock="Right" x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Right" Click="ConnectButton_Click"/>
             <TextBox x:Name="AddressTextBox" VerticalContentAlignment="Center">http://127.0.0.1:5000/hubs/mail</TextBox>
         </DockPanel>
-        <StatusBar DockPanel.Dock="Bottom" Height="">
+        <StatusBar DockPanel.Dock="Bottom" Height="25px">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
@@ -30,7 +30,8 @@
             </StatusBar.ItemsPanel>
             <StatusBarItem></StatusBarItem>
             <Separator></Separator>
-            <StatusBarItem Name="ConnectionStatus" ></StatusBarItem>
+            <StatusBarItem Name="ConnectionStatus" Background="White" />
         </StatusBar>
+        <ListView DockPanel.Dock="Right" Width="300px" x:Name="MessagesListView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ListView>
     </DockPanel>
 </Window>

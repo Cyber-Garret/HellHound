@@ -12,7 +12,7 @@ public class MailHub : Hub<IMailingHub>
 		await Clients.All.FailedCount(count);
 	}
 
-	public async Task SenfFailedMailDetailsToClient(DiscordMember guildMember)
+	public async Task SendFailedMailDetailsToClient(DiscordMember guildMember)
 	{
 		await Clients.All.FailedUserDetails(guildMember);
 	}

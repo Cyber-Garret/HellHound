@@ -1,5 +1,7 @@
 ﻿using DSharpPlus.Entities;
 
+using Hound.Domain.Models;
+
 namespace Hound.Bot.Modules.Admin;
 
 [RequireGuild]
@@ -29,7 +31,8 @@ public class MailModule : BaseCommandModule
 
 
 		var users = context.Guild.Members;
-		_logger.LogInformation($"{context.Guild.Name} loaded: {users.Count} users.");
+
+		_logger.LogInformation("{guildName} loaded: {count} users.", context.Guild.Name, users.Count);
 
 		foreach (var (_, discordMember) in users)
 		{
@@ -44,8 +47,14 @@ public class MailModule : BaseCommandModule
 			}
 			catch (Exception ex)
 			{
+				var model = new UserDetails(
+					$"{discordMember.Username}#{discordMember.Discriminator}",
+					discordMember.Nickname,
+					ex.Message);
+
 				await _mailHub.Clients.All.FailedCount(++failCount);
-				await _mailHub.Clients.All.FailedUserDetails(discordMember);
+				await _mailHub.Clients.All.FailedUserDetails(model);
+
 				_logger.LogError(ex, "Failed send message to user {name}", discordMember.Username);
 			}
 		}

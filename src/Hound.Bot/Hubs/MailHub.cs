@@ -1,4 +1,6 @@
-﻿namespace Hound.Bot.Hubs;
+﻿using Hound.Domain.Models;
+
+namespace Hound.Bot.Hubs;
 
 public class MailHub : Hub<IMailingHub>
 {
@@ -12,8 +14,8 @@ public class MailHub : Hub<IMailingHub>
 		await Clients.All.FailedCount(count);
 	}
 
-	public async Task SendFailedMailDetailsToClient(DiscordMember guildMember)
+	public async Task SendFailedMailDetailsToClient(UserDetails userDetails)
 	{
-		await Clients.All.FailedUserDetails(guildMember);
+		await Clients.All.FailedUserDetails(userDetails);
 	}
 }

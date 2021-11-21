@@ -3,35 +3,95 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
         xmlns:local="clr-namespace:Hound.Client"
         mc:Ignorable="d"
-        Title="Hell Hound Client" Height="450" Width="800">
-    <DockPanel LastChildFill="False">
-        <DockPanel DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Stretch" LastChildFill="True">
-            <Label DockPanel.Dock="Left" Content="Hub Address" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Button DockPanel.Dock="Right" x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Right" Click="ConnectButton_Click"/>
-            <TextBox x:Name="AddressTextBox" VerticalContentAlignment="Center">http://127.0.0.1:5000/hubs/mail</TextBox>
+        Title="Клиент Адской Гончей" Width="800"  Height="450">
+    <Window.Resources>
+        <DrawingImage x:Key="LetterImage" emoji:Image.Source="💌"/>
+        <DrawingImage x:Key="RainbowImage" emoji:Image.Source="🌈"/>
+        <DrawingImage x:Key="PaperImage" emoji:Image.Source="🧻"/>
+        <DrawingImage x:Key="ToolBoxImage" emoji:Image.Source="🧰"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" LastChildFill="True" Margin="5px">
+            <Label DockPanel.Dock="Left" Margin="5px" Content="Хаб:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button DockPanel.Dock="Right" Margin="5px" x:Name="DisconnectButton" Content="Отключиться" HorizontalAlignment="Right" Click="DisconnectButton_OnClick"/>
+            <Button DockPanel.Dock="Right" Margin="5px" x:Name="ConnectButton" Content="Подключиться" HorizontalAlignment="Right" Click="ConnectButton_Click"/>
+            <TextBox x:Name="AddressTextBox" Margin="5px" VerticalContentAlignment="Center">http://127.0.0.1:5000/hubs/mail</TextBox>
         </DockPanel>
-        <StatusBar DockPanel.Dock="Bottom" Height="25px">
+        <TabControl Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource LetterImage}"
+                           Stretch="Fill"
+                           StretchDirection="Both"
+                           Width="15px"
+                           Height="15px"/>
+                        <TextBlock Margin="3">Рассылка</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame Source="Views/Mailing.xaml"/>
+            </TabItem>
+            <TabItem IsEnabled="False">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource RainbowImage}"
+                           Stretch="Fill"
+                           StretchDirection="Both"
+                           Width="15px"
+                           Height="15px"/>
+                        <TextBlock Margin="3">Радужная роль</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource PaperImage}"
+                           Stretch="Fill"
+                           StretchDirection="Both"
+                           Width="15px"
+                           Height="15px"/>
+                        <TextBlock Margin="3">Логи</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <Frame Source="Views/Logs.xaml"></Frame>
+            </TabItem>
+            <TabItem IsEnabled="False">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{StaticResource ToolBoxImage}"
+                           Stretch="Fill"
+                           StretchDirection="Both"
+                           Width="15px"
+                           Height="15px"/>
+                        <TextBlock Margin="3">Настройки</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="2" Height="25px" VerticalContentAlignment="Center">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <StatusBarItem></StatusBarItem>
-            <Separator></Separator>
-            <StatusBarItem Name="ConnectionStatus" Background="White" />
+            <StatusBarItem Grid.Column="0" Name="StatusBarMessage"/>
+            <Separator Grid.Column="1"></Separator>
+            <StatusBarItem Grid.Column="2" Name="StatusBarConnection"></StatusBarItem>
         </StatusBar>
-        <ListView DockPanel.Dock="Right" Width="300px" x:Name="MessagesListView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ListView>
-    </DockPanel>
+    </Grid>
 </Window>

@@ -17,8 +17,7 @@ try
 			.WriteTo.Console())
 		.ConfigureServices((context, services) =>
 		{
-			services.AddSignalR()
-				.AddMessagePackProtocol();
+			services.AddSignalR();
 
 			services.AddHostedService<BotWorker>();
 

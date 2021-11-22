@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorListEmbedFooterText" xml:space="preserve">
+    <value>Для проверки цвета используй - https://www.color-hex.com/</value>
+  </data>
+  <data name="ColorListEmbedTitle" xml:space="preserve">
+    <value>Настройки цветов для ролей</value>
+  </data>
+  <data name="ColorListEmpty" xml:space="preserve">
+    <value>:no_entry_sign: Не сохранено ни одной роли.</value>
+  </data>
+  <data name="ColorListRoleFieldTitle" xml:space="preserve">
+    <value>Настройки цветов для роли {0}</value>
+  </data>
   <data name="DoneMailing" xml:space="preserve">
     <value>Готово. Я разослал сообщением всем у кого есть роль **{0}**.
 - Всего получателей: **{1}**

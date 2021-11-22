@@ -1,9 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using Hound.Client.ViewModels;
 
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Hound.Client
+namespace Hound.Client.Views
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -15,29 +13,33 @@ namespace Hound.Client
 		{
 			InitializeComponent();
 
+			DataContext = App.Current.Services.GetService<MainViewModel>();
+
 			DisconnectButton.IsEnabled = false;
 
 			_connection = new HubConnectionBuilder()
 				.WithUrl(AddressTextBox.Text)
 				.Build();
 
-			_connection.Closed += async (error) =>
+			_connection.Closed += async exception =>
 			{
 				StatusBarConnection.Content = _connection.State;
 
-				StatusBarMessage.Content = error?.Message;
+				StatusBarMessage.Content = exception?.Message;
 
 				await Task.Delay(new Random().Next(0, 5) * 1000);
 				await _connection.StartAsync();
 			};
 
-			_connection.Reconnecting += async (exception) =>
+			_connection.Reconnecting += async exception =>
 			{
+				StatusBarMessage.Content = exception?.Message;
 				StatusBarConnection.Content = _connection.State;
 			};
 
-			_connection.Reconnected += async (exception) =>
+			_connection.Reconnected += async message =>
 			{
+				StatusBarMessage.Content = message;
 				StatusBarConnection.Content = _connection.State;
 			};
 		}

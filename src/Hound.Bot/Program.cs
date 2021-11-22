@@ -27,6 +27,11 @@ try
 				Intents = DiscordIntents.All,
 				LoggerFactory = new LoggerFactory().AddSerilog()
 			}));
+
+			// Database services
+			services
+				.AddHoundContext(context.Configuration)
+				.AddRepositoryWrapper();
 		});
 
 	var app = builder.Build();

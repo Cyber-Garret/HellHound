@@ -1,5 +1,7 @@
 ﻿using System.Windows.Controls;
 
+using Hound.Client.ViewModels;
+
 namespace Hound.Client.Views
 {
 	/// <summary>
@@ -10,6 +12,8 @@ namespace Hound.Client.Views
 		public Logs()
 		{
 			InitializeComponent();
+
+			DataContext = App.Current.Services.GetService<LogsViewModel>();
 		}
 	}
 }

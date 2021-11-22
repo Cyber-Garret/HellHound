@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="Hubs\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -61,6 +61,42 @@ namespace Hound.Bot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Для проверки цвета используй - https://www.color-hex.com/.
+        /// </summary>
+        internal static string ColorListEmbedFooterText {
+            get {
+                return ResourceManager.GetString("ColorListEmbedFooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки цветов для ролей.
+        /// </summary>
+        internal static string ColorListEmbedTitle {
+            get {
+                return ResourceManager.GetString("ColorListEmbedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to :no_entry_sign: Не сохранено ни одной роли..
+        /// </summary>
+        internal static string ColorListEmpty {
+            get {
+                return ResourceManager.GetString("ColorListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки цветов для роли {0}.
+        /// </summary>
+        internal static string ColorListRoleFieldTitle {
+            get {
+                return ResourceManager.GetString("ColorListRoleFieldTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Готово. Я разослал сообщением всем у кого есть роль **{0}**.
         ///- Всего получателей: **{1}**
         ///- Успешно доставлено: **{2}**

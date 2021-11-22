@@ -1,10 +1,9 @@
-﻿<Window x:Class="Hound.Client.MainWindow"
+﻿<Window x:Class="Hound.Client.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
-        xmlns:local="clr-namespace:Hound.Client"
         mc:Ignorable="d"
         Title="Клиент Адской Гончей" Width="800"  Height="450">
     <Window.Resources>
@@ -37,7 +36,56 @@
                         <TextBlock Margin="3">Рассылка</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame Source="Views/Mailing.xaml"/>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="1" Margin="5px">
+                            <Grid DockPanel.Dock="Left">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="0">
+                                    <Label Content="Удачно:" Foreground="Green"/>
+                                    <Label Content="Неудачно:" Foreground="Red"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="1">
+                                    <Label Name="SuccessCount" Foreground="Green" Content="0"/>
+                                    <Label Name="FailedCount" Foreground="Red" Content="0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                                    <Label Content="Статус рассылки"/>
+                                    <Label x:Name="MailingStatus"/>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                                <Button Content="Сохранить результат" HorizontalAlignment="Center" IsEnabled="False"></Button>
+                            </StackPanel>
+                            <ListView DockPanel.Dock="Right"
+                                      x:Name="MessagesListView"
+                                      VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Username}" Width="Auto">Имя</GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Nickname}" Width="Auto">Имя на сервере</GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Reason}" Width="Auto">Причина</GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                    </Grid>
+                </TabItem.Content>
             </TabItem>
             <TabItem IsEnabled="False">
                 <TabItem.Header>
@@ -62,7 +110,7 @@
                         <TextBlock Margin="3">Логи</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
-                <Frame Source="Views/Logs.xaml"></Frame>
+                <Frame Source="Logs.xaml"/>
             </TabItem>
             <TabItem IsEnabled="False">
                 <TabItem.Header>

@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ColorAddExist" xml:space="preserve">
+    <value>:no_entry_sign: Цвет {0} для роли **{1}** был добавлен ранее.</value>
+  </data>
+  <data name="ColorAddParametersIsNull" xml:space="preserve">
+    <value>Не указана роль и-или цвет.
+Формат: !добавить @Role #fcba03</value>
+  </data>
+  <data name="ColorAddSuccess" xml:space="preserve">
+    <value>:floppy_disk: Для роли **{0}**, сохранен цвет #{1}.</value>
+  </data>
+  <data name="ColorAddWrongFormat" xml:space="preserve">
+    <value>:no_entry_sign: Миша все хуйня, давай по новой.(Некоректный формат цвета)</value>
+  </data>
   <data name="ColorListEmbedFooterText" xml:space="preserve">
     <value>Для проверки цвета используй - https://www.color-hex.com/</value>
   </data>

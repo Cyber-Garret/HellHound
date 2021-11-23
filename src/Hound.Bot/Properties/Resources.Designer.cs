@@ -61,6 +61,43 @@ namespace Hound.Bot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to :no_entry_sign: Цвет {0} для роли **{1}** был добавлен ранее..
+        /// </summary>
+        internal static string ColorAddExist {
+            get {
+                return ResourceManager.GetString("ColorAddExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указана роль и-или цвет.
+        ///Формат: !добавить @Role #fcba03.
+        /// </summary>
+        internal static string ColorAddParametersIsNull {
+            get {
+                return ResourceManager.GetString("ColorAddParametersIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to :floppy_disk: Для роли **{0}**, сохранен цвет #{1}..
+        /// </summary>
+        internal static string ColorAddSuccess {
+            get {
+                return ResourceManager.GetString("ColorAddSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to :no_entry_sign: Миша все хуйня, давай по новой.(Некоректный формат цвета).
+        /// </summary>
+        internal static string ColorAddWrongFormat {
+            get {
+                return ResourceManager.GetString("ColorAddWrongFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Для проверки цвета используй - https://www.color-hex.com/.
         /// </summary>
         internal static string ColorListEmbedFooterText {

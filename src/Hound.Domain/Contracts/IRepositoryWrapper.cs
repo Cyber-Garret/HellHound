@@ -6,5 +6,5 @@ public interface IRepositoryWrapper
 {
 	IGuildRepository Guild { get; }
 	IGuildRainbowRoleRepository RainbowRole { get; }
-	Task Save();
+	Task SaveAsync();
 }

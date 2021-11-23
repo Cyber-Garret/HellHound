@@ -2,15 +2,15 @@
 
 namespace Hound.Domain.Guild;
 
-public interface IGuildRepository : IRepositoryBase<Guild>
+public interface IGuildRepository : IRepositoryBase<GuildSettings>
 {
 	/// <summary>
 	/// Get guild settings from database by id
 	/// </summary>
-	Task<Guild> GetGuild(ulong guildId);
+	Task<GuildSettings> GetGuild(ulong guildId);
 
 	/// <summary>
 	/// Get guild settings from database by <see cref="DiscordGuild"/>
 	/// </summary>
-	Task<Guild> GetGuild(DiscordGuild guild);
+	Task<GuildSettings> GetGuild(DiscordGuild guild);
 }

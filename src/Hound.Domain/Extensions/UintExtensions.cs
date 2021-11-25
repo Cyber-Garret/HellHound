@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Hound.Bot.Extensions;
+namespace System;
 
 public static class UintExtensions
 {
@@ -15,5 +15,15 @@ public static class UintExtensions
 		var b = (byte)(color >> 0);
 
 		return Color.FromArgb(a, r, g, b);
+	}
+
+	public static DiscordColor UIntToDiscordColor(this uint color)
+	{
+		var a = (byte)(color >> 24);
+		var r = (byte)(color >> 16);
+		var g = (byte)(color >> 8);
+		var b = (byte)(color >> 0);
+
+		return new DiscordColor(r, g, b);
 	}
 }

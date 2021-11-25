@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 
-using Hound.Bot.Extensions;
 using Hound.Domain.Guild;
 
 namespace Hound.Bot.Modules.Admin;

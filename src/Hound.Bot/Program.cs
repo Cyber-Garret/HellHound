@@ -32,6 +32,19 @@ try
 			services
 				.AddHoundContext(context.Configuration)
 				.AddRepositoryWrapper();
+
+			// see Quartz.Extensions.DependencyInjection documentation about how to configure different configuration aspects
+			services.AddQuartz(q =>
+			{
+				// your configuration here
+			});
+
+			// Quartz.Extensions.Hosting hosting
+			services.AddQuartzHostedService(options =>
+			{
+				// when shutting down we want jobs to complete gracefully
+				options.WaitForJobsToComplete = true;
+			});
 		});
 
 	var app = builder.Build();

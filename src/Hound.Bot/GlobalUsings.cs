@@ -11,4 +11,6 @@ global using Hound.Domain.Contracts;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.SignalR;
 
+global using Quartz;
+
 global using Serilog;

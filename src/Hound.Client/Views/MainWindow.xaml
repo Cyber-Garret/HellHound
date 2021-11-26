@@ -69,7 +69,7 @@
                                 </StackPanel>
                             </Grid>
                             <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-                                <Button Content="Сохранить результат" HorizontalAlignment="Center" IsEnabled="False"></Button>
+                                <Button x:Name="SaveResult" Content="Сохранить результат" HorizontalAlignment="Center" IsEnabled="False" Click="SaveResult_OnClick"></Button>
                             </StackPanel>
                             <ListView DockPanel.Dock="Right"
                                       x:Name="MessagesListView"
@@ -99,7 +99,7 @@
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>
-            <TabItem>
+            <TabItem IsEnabled="False" >
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{StaticResource PaperImage}"
@@ -137,7 +137,7 @@
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
-            <StatusBarItem Grid.Column="0" Name="StatusBarMessage"/>
+            <StatusBarItem Grid.Column="0" Name="StatusBarMessage" DataContextChanged="StatusBarMessage_OnDataContextChanged"/>
             <Separator Grid.Column="1"></Separator>
             <StatusBarItem Grid.Column="2" Name="StatusBarConnection"></StatusBarItem>
         </StatusBar>

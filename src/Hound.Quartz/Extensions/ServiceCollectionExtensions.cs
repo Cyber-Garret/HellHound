@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
@@ -6,11 +8,13 @@ public static class ServiceCollectionExtensions
 		services.AddHostedService<QuartzHostedService>()
 			// see Quartz.Extensions.DependencyInjection documentation about how to configure different configuration aspects
 			.AddQuartz(q => q.UseMicrosoftDependencyInjectionJobFactory())
-			// Quartz.Extensions.Hosting hosting
-			.AddQuartzHostedService(options => options.WaitForJobsToComplete = true)
 			.RegisterQuartzJobs();
 
 	private static IServiceCollection RegisterQuartzJobs(this IServiceCollection services) =>
-		services.AddSingleton<RainbowRoleJob>()
-			.AddSingleton(new JobSchedule(typeof(RainbowRoleJob), "0/3 * * * * ?")); // run every 10 seconds.
+		services.AddTransient<RainbowRoleJob>()
+			.AddTransient(serviceProvider =>
+			{
+				var config = serviceProvider.GetService<IConfiguration>();
+				return new JobSchedule(typeof(RainbowRoleJob), config["Quartz:RainbowRoleCron"]);
+			});
 }

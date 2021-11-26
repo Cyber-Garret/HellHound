@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Security.RightsManagement;
+using System.Text;
+using System.Windows;
+
 using Hound.Client.ViewModels;
 
 namespace Hound.Client.Views
@@ -8,15 +12,60 @@ namespace Hound.Client.Views
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private readonly HubConnection _connection;
+		private HubConnection? _connection;
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			DataContext = App.Current.Services.GetService<MainViewModel>();
-
 			DisconnectButton.IsEnabled = false;
+		}
 
+		private async void ConnectButton_Click(object sender, RoutedEventArgs e)
+		{
+			await ConnectToHub();
+		}
+
+		private async void DisconnectButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				await _connection?.StopAsync()!;
+
+				StatusBarConnection.Content = _connection.State;
+				ConnectButton.IsEnabled = true;
+				DisconnectButton.IsEnabled = false;
+			}
+			catch (Exception ex)
+			{
+				StatusBarConnection.Content = _connection!.State;
+				StatusBarMessage.Content = ex.Message;
+			}
+		}
+
+		private void SaveResult_OnClick(object sender, RoutedEventArgs e)
+		{
+			var userDetails = MessagesListView.Items.OfType<UserDetails>().ToList();
+
+			if (!userDetails.Any()) return;
+
+			var stringBuilder = new StringBuilder("Имя, Имя на сервере, Причина");
+			foreach (var user in userDetails)
+			{
+				stringBuilder.AppendLine($"{user.Username}, {user.Nickname}, {user.Reason}");
+			}
+
+			var path = Path.Combine(AppContext.BaseDirectory, $"{DateTime.Now:dd-MM-yy-hh-mm}.txt");
+			if (userDetails != null) File.WriteAllLines(path, userDetails.Select(x => x.ToString()));
+		}
+
+		private async void StatusBarMessage_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			await Task.Delay(TimeSpan.FromSeconds(20));
+			StatusBarMessage.Content = string.Empty;
+		}
+
+		private async Task ConnectToHub()
+		{
 			_connection = new HubConnectionBuilder()
 				.WithUrl(AddressTextBox.Text)
 				.Build();
@@ -42,15 +91,13 @@ namespace Hound.Client.Views
 				StatusBarMessage.Content = message;
 				StatusBarConnection.Content = _connection.State;
 			};
-		}
 
-		private async void ConnectButton_Click(object sender, RoutedEventArgs e)
-		{
 			_connection.On<UserDetails>("FailedUserDetails", (details) =>
 			{
 				Dispatcher.Invoke(() =>
 				{
 					MessagesListView.Items.Add(details);
+					SaveResult.IsEnabled = true;
 				});
 			});
 
@@ -77,23 +124,6 @@ namespace Hound.Client.Views
 				StatusBarConnection.Content = _connection.State;
 				ConnectButton.IsEnabled = false;
 				DisconnectButton.IsEnabled = true;
-			}
-			catch (Exception ex)
-			{
-				StatusBarConnection.Content = _connection.State;
-				StatusBarMessage.Content = ex.Message;
-			}
-		}
-
-		private async void DisconnectButton_OnClick(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				await _connection.StopAsync();
-
-				StatusBarConnection.Content = _connection.State;
-				ConnectButton.IsEnabled = true;
-				DisconnectButton.IsEnabled = false;
 			}
 			catch (Exception ex)
 			{

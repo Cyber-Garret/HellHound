@@ -12,4 +12,7 @@ public class UserDetails
 	public string Username { get; set; }
 	public string Nickname { get; set; }
 	public string Reason { get; set; }
+
+	public override string ToString() =>
+		Username + ", " + Nickname + ", " + Reason;
 }

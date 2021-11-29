@@ -8,6 +8,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageIcon>wolf.png</PackageIcon>
     <ApplicationIcon>wolf.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <Company>Exodus Black</Company>
+    <Authors>Cyber-Garret</Authors>
+    <Product>Hound Client</Product>
+    <Description>Simple Windows realtime client for Hell hound discord bot</Description>
+    <Copyright>Cyber-Garret</Copyright>
+    <PackageProjectUrl>https://github.com/Exodus-Black</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Exodus-Black/HellHound</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>WPF, SignalR, Discord</PackageTags>
+    <NeutralLanguage>ru-RU</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,7 +30,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wolf.ico" />
+    <Content Include="wolf.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

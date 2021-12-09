@@ -155,7 +155,7 @@ namespace Hound.Bot.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Приступаю к рассылке сообщений. Всем пользователям с ролью **{0}**.
+        ///   Looks up a localized string similar to Приступаю к рассылке {0} сообщений. Всем пользователям с ролью **{1}**..
         /// </summary>
         internal static string StartMailing {
             get {

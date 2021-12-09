@@ -1,6 +1,4 @@
-﻿using DSharpPlus.Entities;
-
-using Hound.Domain.Models;
+﻿using Hound.Domain.Models;
 
 namespace Hound.Bot.Modules.Admin;
 
@@ -23,21 +21,27 @@ public class MailModule : BaseCommandModule
 	[Command("рассылка")]
 	public async Task MailCommand(CommandContext context, DiscordRole role, [RemainingText] string message)
 	{
-		var workMessage = await context.RespondAsync(string.Format(Resources.StartMailing, role.Name));
-
 		var successCount = 0;
 		var failCount = 0;
 		var embed = MailingEmbed(ref context, message);
 
+		//If mentioned everyone just take all, expect bots. Otherwise filter users by role and exclude bots.
+		List<DiscordMember> users =
+			role.Name == "@everyone"
+			? context.Guild.Members.Values.Where(x =>
+					x.IsBot != true)
+				.ToList()
+			: context.Guild.Members.Values.Where(x =>
+					x.IsBot != true
+					&& x.Roles.Contains(role))
+				.ToList();
 
-		var users = context.Guild.Members;
+		var workMessage = await context.RespondAsync(string.Format(Resources.StartMailing, users.Count, role.Name));
 
 		_logger.LogInformation("{guildName} loaded: {count} users.", context.Guild.Name, users.Count);
 
-		foreach (var (_, discordMember) in users)
+		foreach (var discordMember in users)
 		{
-			if (!discordMember.Roles.Contains(role) && role.Name != "everyone") continue;
-
 			try
 			{
 				var dm = await discordMember.CreateDmChannelAsync();

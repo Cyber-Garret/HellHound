@@ -152,6 +152,6 @@
     <value>:mailbox_with_mail: Вам сообщение от {0} с сервера **`{1}`**</value>
   </data>
   <data name="StartMailing" xml:space="preserve">
-    <value>Приступаю к рассылке сообщений. Всем пользователям с ролью **{0}**</value>
+    <value>Приступаю к рассылке {0} сообщений. Всем пользователям с ролью **{1}**.</value>
   </data>
 </root>

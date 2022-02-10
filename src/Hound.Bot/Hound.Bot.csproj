@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hound.Hangfire\Hound.Hangfire.csproj" />
     <ProjectReference Include="..\Hound.Infrastructure\Hound.Infrastructure.csproj" />
     <ProjectReference Include="..\Hound.Quartz\Hound.Quartz.csproj" />
   </ItemGroup>

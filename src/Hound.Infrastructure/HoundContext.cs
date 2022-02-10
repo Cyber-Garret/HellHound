@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
-
 using Hound.Domain.Guild;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Hound.Infrastructure;
@@ -9,7 +7,7 @@ namespace Hound.Infrastructure;
 internal sealed class HoundContext : DbContext
 {
 	public HoundContext(DbContextOptions<HoundContext> options)
-	: base(options)
+		: base(options)
 	{
 		Database.EnsureCreated();
 	}

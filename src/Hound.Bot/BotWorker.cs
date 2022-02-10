@@ -1,6 +1,5 @@
-using System.Reflection;
+﻿using System.Reflection;
 
-using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
 
 namespace Hound.Bot;
@@ -52,7 +51,7 @@ public class BotWorker : IHostedService
 	}
 
 	/// <summary>
-	/// Registering traditional commands in Discord Client
+	/// Registering slash commands in Discord Client
 	/// </summary>
 	private void RegisterSlashCommands()
 	{
@@ -60,7 +59,5 @@ public class BotWorker : IHostedService
 		{
 			Services = _serviceProvider
 		});
-
-
 	}
 }

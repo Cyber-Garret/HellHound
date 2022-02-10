@@ -1,9 +1,6 @@
 ﻿using System.IO;
-using System.Security.RightsManagement;
 using System.Text;
 using System.Windows;
-
-using Hound.Client.ViewModels;
 
 namespace Hound.Client.Views
 {

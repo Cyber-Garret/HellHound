@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-
-using DSharpPlus.Entities;
-
+﻿
 using Microsoft.Extensions.Logging;
 
 namespace Hound.Quartz.Jobs;

@@ -25,16 +25,18 @@ public class MailModule : BaseCommandModule
 		var failCount = 0;
 		var embed = MailingEmbed(ref context, message);
 
+		var guildMembers = await context.Guild.GetAllMembersAsync();
+
 		//If mentioned everyone just take all, expect bots. Otherwise filter users by role and exclude bots.
-		List<DiscordMember> users =
+		var users =
 			role.Name == "@everyone"
-			? context.Guild.Members.Values.Where(x =>
+			? guildMembers.Where(x =>
 					x.IsBot != true)
-				.ToList()
-			: context.Guild.Members.Values.Where(x =>
+				.ToList().AsReadOnly()
+			: guildMembers.Where(x =>
 					x.IsBot != true
 					&& x.Roles.Contains(role))
-				.ToList();
+				.ToList().AsReadOnly();
 
 		var workMessage = await context.RespondAsync(string.Format(Resources.StartMailing, users.Count, role.Name));
 
@@ -44,9 +46,11 @@ public class MailModule : BaseCommandModule
 		{
 			try
 			{
+				await Task.Delay(TimeSpan.FromSeconds(1));
+
 				var dm = await discordMember.CreateDmChannelAsync();
 
-				await dm.SendMessageAsync(embed: embed);
+				await dm.SendMessageAsync(embed);
 				await _mailHub.Clients.All.SucessCount(++successCount);
 			}
 			catch (Exception ex)

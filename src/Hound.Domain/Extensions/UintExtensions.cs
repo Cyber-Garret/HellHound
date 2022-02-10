@@ -19,7 +19,8 @@ public static class UintExtensions
 
 	public static DiscordColor UIntToDiscordColor(this uint color)
 	{
-		var a = (byte)(color >> 24);
+		//Alpha channel
+		//var a = (byte)(color >> 24);
 		var r = (byte)(color >> 16);
 		var g = (byte)(color >> 8);
 		var b = (byte)(color >> 0);
